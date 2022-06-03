@@ -11,7 +11,7 @@ pipeline {
     environment {
             AWS_DEFAULT_REGION = 'us-east-1'
             SERVICE_NAME = 'vote'
-            TASK_FAMILY = 'vote-fargate'
+            TASK_FAMILY = 'vote-farget'
             ECS_CLUSTER = 'vote-app'
     }
     stages {
