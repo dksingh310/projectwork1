@@ -11,8 +11,8 @@ pipeline {
       parallel {
         stage('Build Docker Image') {
           steps {
-            sh 'cd vote && sudo docker build . -t 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
-            sh 'sudo docker push 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
+            sh 'cd vote && docker build . -t 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
+            sh 'docker push 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
           }
         }
 
@@ -52,7 +52,7 @@ aws ecs update-service --cluster ${ECS_CLUSTER} \
   post {
     always {
       deleteDir()
-      sh 'sudo docker rmi 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
+      sh 'docker rmi 635145294553.dkr.ecr.us-east-1.amazonaws.com/vote:${BUILD_NUMBER}'
     }
 
   }
