@@ -40,7 +40,7 @@ NEW_TASK_DEFINTIION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$ECR_IMAGE" '.task
 NEW_TASK_INFO=$(aws ecs register-task-definition --region "$AWS_DEFAULT_REGION" --cli-input-json "$NEW_TASK_DEFINTIION")
 NEW_REVISION=$(echo $NEW_TASK_INFO | jq '.taskDefinition.revision')
 aws ecs update-service --cluster ${ECS_CLUSTER} \
---service ${SERVICE_NAME} \
+--service ${SERVICE_NAME} \136954245697.dkr.ecr.us-east-1.amazonaws.com/vote
 --task-definition ${TASK_FAMILY}:${NEW_REVISION}'''
         }
 
